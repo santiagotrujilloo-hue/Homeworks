@@ -2,7 +2,7 @@
    CHALLENGE - REFUERZO JAVASCRIPT
    Diferencia entre Arrow Functions y Regular Functions +
    Función que indica si un número es par o impar
-   Autor: (tu nombre aquí)
+   Autor: Santiago Trujillo Ortiz
    ============================================================ */
 
 /* ------------------------------------------------------------
