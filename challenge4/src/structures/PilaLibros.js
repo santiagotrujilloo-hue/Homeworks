@@ -27,7 +27,7 @@ class PilaLibros {
     return this.libros.length === 0;
   }
 
-  tamaño() {
+  cantidad() {
     return this.libros.length;
   }
 

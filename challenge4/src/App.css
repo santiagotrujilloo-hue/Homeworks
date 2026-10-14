@@ -4,8 +4,8 @@
 
 :root {
   font-family: Inter, Arial, Helvetica, sans-serif;
-  color: #eef2ff;
-  background: #090b16;
+  color: #17352f;
+  background: #edf4f1;
 }
 
 body {
@@ -22,9 +22,12 @@ input {
 .app {
   min-height: 100vh;
   background:
-    radial-gradient(circle at top left, rgba(99, 102, 241, 0.22), transparent 35%),
-    radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.12), transparent 35%),
-    #090b16;
+    radial-gradient(
+      circle at top left,
+      rgba(140, 227, 201, 0.22),
+      transparent 35%
+    ),
+    #edf4f1;
 }
 
 /* HEADER */
@@ -35,11 +38,12 @@ input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #25283c;
+  background: #ffffff;
+  border-bottom: 1px solid #dce6e2;
 }
 
 .logo {
-  color: #8b5cf6;
+  color: #0d806a;
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 4px;
@@ -47,7 +51,7 @@ input {
 
 .header h1 {
   margin: 8px 0 0;
-  color: #f8faff;
+  color: #17352f;
   font-size: 28px;
   font-weight: 600;
 }
@@ -57,20 +61,20 @@ input {
   align-items: center;
   gap: 10px;
   padding: 12px 18px;
-  border: 1px solid #323752;
+  border: 1px solid #d5e8e1;
   border-radius: 14px;
-  background: #121526;
+  background: #f0faf6;
 }
 
 .contador span {
-  color: #38bdf8;
+  color: #0d806a;
   font-size: 26px;
   font-weight: bold;
 }
 
 .contador p {
   margin: 0;
-  color: #9299b3;
+  color: #729087;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -88,12 +92,12 @@ input {
 
 .formulario-contenedor {
   padding: 44px 38px;
-  border-right: 1px solid #25283c;
-  background: rgba(15, 18, 34, 0.9);
+  border-right: 1px solid #dce6e2;
+  background: #ffffff;
 }
 
 .etiqueta {
-  color: #38bdf8;
+  color: #0d806a;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 2px;
@@ -102,13 +106,13 @@ input {
 .formulario-header h2,
 .pila-header h2 {
   margin: 8px 0;
-  color: #f8faff;
+  color: #17352f;
   font-size: 24px;
 }
 
 .formulario-header p {
   margin: 0 0 32px;
-  color: #858ca5;
+  color: #71877f;
   font-size: 13px;
   line-height: 1.7;
 }
@@ -120,7 +124,7 @@ input {
 .campo label {
   display: block;
   margin-bottom: 8px;
-  color: #bec4d9;
+  color: #39574f;
   font-size: 12px;
   font-weight: 600;
 }
@@ -128,21 +132,21 @@ input {
 .campo input {
   width: 100%;
   padding: 13px 14px;
-  color: #f4f6ff;
-  background: #0b0e1b;
-  border: 1px solid #343951;
+  color: #17352f;
+  background: #fbfdfc;
+  border: 1px solid #cedbd6;
   border-radius: 10px;
   outline: none;
   transition: 0.2s;
 }
 
 .campo input::placeholder {
-  color: #555c75;
+  color: #9eafa9;
 }
 
 .campo input:focus {
-  border-color: #8b5cf6;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.16);
+  border-color: #0d806a;
+  box-shadow: 0 0 0 3px rgba(13, 128, 106, 0.1);
 }
 
 .boton-agregar {
@@ -155,7 +159,7 @@ input {
   gap: 10px;
   color: #ffffff;
   font-weight: 800;
-  background: linear-gradient(135deg, #7c3aed, #2563eb);
+  background: #0d806a;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -169,13 +173,15 @@ input {
 
 .boton-agregar:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(99, 102, 241, 0.28);
+  background: #096d5a;
+  box-shadow: 0 8px 20px rgba(13, 128, 106, 0.18);
 }
 
 /* PILA */
 
 .pila-contenedor {
   padding: 44px 6%;
+  background: #edf4f1;
 }
 
 .pila-header {
@@ -192,7 +198,7 @@ input {
   display: flex;
   flex-direction: column;
   text-align: right;
-  color: #6f7690;
+  color: #82958f;
   font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -200,7 +206,7 @@ input {
 
 .lifo strong {
   margin-top: 3px;
-  color: #bac0d3;
+  color: #39574f;
 }
 
 .linea-superior {
@@ -211,7 +217,7 @@ input {
 }
 
 .linea-superior span {
-  color: #38bdf8;
+  color: #0d806a;
   font-size: 9px;
   font-weight: 800;
   letter-spacing: 2px;
@@ -220,7 +226,7 @@ input {
 .linea-superior div {
   height: 1px;
   flex: 1;
-  background: linear-gradient(to right, #38bdf8, transparent);
+  background: linear-gradient(to right, #0d806a, transparent);
 }
 
 .lista-libros {
@@ -229,6 +235,8 @@ input {
   gap: 12px;
 }
 
+/* TARJETAS */
+
 .libro-card {
   position: relative;
   display: grid;
@@ -236,31 +244,32 @@ input {
   align-items: center;
   gap: 18px;
   padding: 20px;
-  border: 1px solid #2d3249;
+  border: 1px solid #dce6e2;
   border-radius: 12px;
-  background: #111526;
+  background: #ffffff;
+  box-shadow: 0 7px 18px rgba(45, 76, 66, 0.05);
   transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
 .libro-card:hover {
   transform: translateX(5px);
-  border-color: #6366f1;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.35);
+  border-color: #8fcdbb;
+  box-shadow: 0 10px 24px rgba(45, 76, 66, 0.1);
 }
 
 .libro-top {
-  border-left: 3px solid #8b5cf6;
+  border-left: 4px solid #0d806a;
   background:
     linear-gradient(
       90deg,
-      rgba(139, 92, 246, 0.12),
-      transparent 45%
+      rgba(140, 227, 201, 0.18),
+      transparent 50%
     ),
-    #111526;
+    #ffffff;
 }
 
 .posicion {
-  color: #737b97;
+  color: #82958f;
   font-size: 12px;
   font-weight: bold;
   letter-spacing: 1px;
@@ -272,14 +281,13 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #38bdf8;
+  color: #ffffff;
   font-family: Georgia, serif;
   font-size: 22px;
   font-weight: bold;
-  border: 1px solid #47506d;
-  border-left: 4px solid #8b5cf6;
+  border-left: 4px solid #8ce3c9;
   border-radius: 4px 8px 8px 4px;
-  background: #191e35;
+  background: #0d806a;
 }
 
 .info-libro {
@@ -294,23 +302,23 @@ input {
 
 .titulo-linea h3 {
   margin: 0;
-  color: #f8faff;
+  color: #29473f;
   font-size: 17px;
 }
 
 .top-badge {
   padding: 3px 8px;
-  color: #ffffff;
+  color: #0d806a;
   font-size: 8px;
   font-weight: 900;
   letter-spacing: 1px;
   border-radius: 5px;
-  background: linear-gradient(135deg, #7c3aed, #2563eb);
+  background: #dff4ec;
 }
 
 .autor {
   margin: 6px 0 14px;
-  color: #949bb4;
+  color: #71877f;
   font-size: 13px;
 }
 
@@ -323,13 +331,13 @@ input {
 .detalles span {
   display: flex;
   flex-direction: column;
-  color: #bac0d3;
+  color: #39574f;
   font-size: 11px;
 }
 
 .detalles small {
   margin-bottom: 3px;
-  color: #626a86;
+  color: #8ca099;
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -340,20 +348,20 @@ input {
 .estado-vacio {
   padding: 70px 20px;
   text-align: center;
-  color: #6f7690;
-  border: 1px dashed #363c57;
+  color: #71877f;
+  border: 1px dashed #b9ccc5;
   border-radius: 12px;
-  background: rgba(17, 21, 38, 0.6);
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .estado-vacio span {
   font-size: 35px;
-  color: #8b5cf6;
+  color: #0d806a;
 }
 
 .estado-vacio h3 {
   margin-bottom: 5px;
-  color: #b7bdd0;
+  color: #39574f;
 }
 
 .estado-vacio p {
@@ -370,7 +378,7 @@ input {
 
   .formulario-contenedor {
     border-right: none;
-    border-bottom: 1px solid #25283c;
+    border-bottom: 1px solid #dce6e2;
   }
 }
 
