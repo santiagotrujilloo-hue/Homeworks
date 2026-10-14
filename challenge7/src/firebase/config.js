@@ -2,14 +2,14 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-// Proyecto de Firebase: tareas-challenge7 (app web "tareas-web")
+// Proyecto de Firebase: challenge-07 (cuenta santiago.trujillo_o@uao.edu.co, app web "bitacora-web")
 const firebaseConfig = {
-  apiKey: "AIzaSyB-OTHnV0ScZtj5O4KA6gfx21oROTDlGYY",
-  authDomain: "tareas-challenge7.firebaseapp.com",
-  projectId: "tareas-challenge7",
-  storageBucket: "tareas-challenge7.firebasestorage.app",
-  messagingSenderId: "518472371468",
-  appId: "1:518472371468:web:cbf29d2156039d5db90d29",
+  apiKey: "AIzaSyA6nCR6In-zUlGsJhPVhaybaXE_6u_JWKQ",
+  authDomain: "challenge-07-a6a12.firebaseapp.com",
+  projectId: "challenge-07-a6a12",
+  storageBucket: "challenge-07-a6a12.firebasestorage.app",
+  messagingSenderId: "420419239801",
+  appId: "1:420419239801:web:d2841cfb365d570a24b9a8",
 };
 
 // Initialize Firebase

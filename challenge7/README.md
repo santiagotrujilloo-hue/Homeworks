@@ -20,7 +20,7 @@ Las tareas se guardan en la colección `tasks` de Cloud Firestore con los campos
 
 ## Configurar Firebase
 
-Proyecto usado: **tareas-challenge7** (ya configurado en `src/firebase/config.js`).
+Proyecto usado: **challenge-07** (`challenge-07-a6a12`) (ya configurado en `src/firebase/config.js`).
 
 Para replicarlo en otro proyecto:
 
