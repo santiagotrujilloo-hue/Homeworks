@@ -20,6 +20,10 @@ Las tareas se guardan en la colección `tasks` de Cloud Firestore con los campos
 
 ## Configurar Firebase
 
+Proyecto usado: **tareas-challenge7** (ya configurado en `src/firebase/config.js`).
+
+Para replicarlo en otro proyecto:
+
 1. En <https://console.firebase.google.com/> crear un proyecto.
 2. **Authentication → Comenzar → Correo electrónico/contraseña → Habilitar**.
 3. **Firestore Database → Crear base de datos** y pegar en **Reglas** el contenido de `firestore.rules`.
