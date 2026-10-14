@@ -1,0 +1,50 @@
+// ── Paleta "bitácora": papel, tinta y bermellón ─────────────
+$paper: #f3ede2;
+$paper-deep: #e9e1d2;
+$ink: #1f1c17;
+$ink-soft: #5c554a;
+$vermilion: #c8471e;
+$olive: #5f6f32;
+$ochre: #b9862a;
+
+// Prioridades → color (se recorren con @each en _tasks.scss)
+$priority-colors: (
+  "alta": $vermilion,
+  "media": $ochre,
+  "baja": $olive,
+);
+
+// ── Tipografía ─────────────────────────────────────────────
+$font-display: "Fraunces", Georgia, serif;
+$font-sans: "IBM Plex Sans", system-ui, sans-serif;
+$font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+// ── Escala de espacio (base 8px) ───────────────────────────
+$unit: 8px;
+$gutter: $unit * 3;
+
+// ── Sobrescribir variables de Bootstrap ANTES de importarlo ─
+$primary: $vermilion;
+$danger: #a32d14;
+$dark: $ink;
+$body-bg: $paper;
+$body-color: $ink;
+$font-family-sans-serif: $font-sans;
+$font-family-monospace: $font-mono;
+$headings-font-family: $font-display;
+$headings-font-weight: 600;
+$border-color: rgba($ink, 0.16);
+$border-radius: 2px;
+$border-radius-sm: 2px;
+$border-radius-lg: 4px;
+$input-bg: #fffdf8;
+$input-border-color: rgba($ink, 0.22);
+$input-focus-border-color: $ink;
+$input-focus-box-shadow: 0 0 0 3px rgba($vermilion, 0.18);
+$btn-font-weight: 600;
+$link-color: $vermilion;
+$modal-content-bg: $paper;
+$progress-bg: $paper-deep;
+$progress-height: 6px;
+$progress-bar-bg: $ink;
+$nav-underline-link-active-color: $ink;

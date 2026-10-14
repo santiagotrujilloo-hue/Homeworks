@@ -1,0 +1,14 @@
+// 1. Variables propias + sobrescritura de Bootstrap
+@import "variables";
+@import "functions";
+
+// 2. Librería CSS: Bootstrap compilado desde sus fuentes Sass
+@import "bootstrap/scss/bootstrap";
+
+// 3. Mixins (usan los breakpoints de Bootstrap)
+@import "mixins";
+
+// 4. Estilos de la app
+@import "base";
+@import "auth";
+@import "tasks";

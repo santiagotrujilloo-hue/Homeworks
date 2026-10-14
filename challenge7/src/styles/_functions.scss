@@ -1,0 +1,11 @@
+@use "sass:math";
+
+// Convierte px a rem (base 16px)
+@function rem($px) {
+  @return math.div($px, 16px) * 1rem;
+}
+
+// Múltiplos de la unidad base de espacio
+@function space($n) {
+  @return $unit * $n;
+}

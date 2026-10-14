@@ -1,0 +1,32 @@
+// Tarjeta de papel con sombra "dura" desplazada
+@mixin paper-card($offset: 6px, $bg: #fffdf8) {
+  background: $bg;
+  border: 1.5px solid $ink;
+  box-shadow: $offset $offset 0 $ink;
+}
+
+// Etiqueta tipo sello de goma
+@mixin stamp($color) {
+  display: inline-block;
+  padding: 2px space(1);
+  font-family: $font-mono;
+  font-size: rem(11px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $color;
+  border: 1.5px solid $color;
+  transform: rotate(-2deg);
+}
+
+@mixin mono-caps($size: 12px) {
+  font-family: $font-mono;
+  font-size: rem($size);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@mixin from($breakpoint) {
+  @include media-breakpoint-up($breakpoint) {
+    @content;
+  }
+}

@@ -1,0 +1,313 @@
+// ── Barra superior ───────────────────────────────────────
+.app-container {
+  max-width: 1120px;
+}
+
+.app-nav {
+  border-bottom: 1.5px solid $ink;
+  background: rgba($paper, 0.92);
+  backdrop-filter: blur(4px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: space(1.5);
+    font-size: rem(14px);
+  }
+}
+
+.avatar {
+  width: space(4);
+  height: space(4);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: $ink;
+  color: $paper;
+  font-family: $font-display;
+  font-weight: 700;
+}
+
+// ── Encabezado de la página ──────────────────────────────
+.page-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: space(3);
+  margin-bottom: space(3);
+
+  &__date {
+    @include mono-caps(12px);
+    color: $vermilion;
+  }
+
+  h1 {
+    font-size: clamp(#{rem(36px)}, 5vw, #{rem(56px)});
+    letter-spacing: -0.02em;
+    margin: space(1) 0 0;
+  }
+}
+
+.tally {
+  display: flex;
+  margin: 0;
+  border: 1.5px solid $ink;
+  background: #fffdf8;
+
+  > div {
+    padding: space(1.5) space(2.5);
+    min-width: space(12);
+
+    & + div {
+      border-left: 1.5px solid $ink;
+    }
+  }
+
+  dt {
+    @include mono-caps(10px);
+    color: $ink-soft;
+    font-weight: 400;
+  }
+
+  dd {
+    margin: 0;
+    font-family: $font-display;
+    font-size: rem(30px);
+    line-height: 1.1;
+  }
+}
+
+.ledger-progress {
+  border-radius: 0;
+}
+
+// ── Formulario de nueva tarea ────────────────────────────
+.composer {
+  @include paper-card(6px);
+  padding: space(3);
+  display: grid;
+  gap: space(1.5);
+
+  @include from(lg) {
+    position: sticky;
+    top: space(12);
+  }
+
+  &__label {
+    @include mono-caps(11px);
+    color: $vermilion;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-size: rem(20px);
+    border-width: 0 0 1.5px;
+    border-radius: 0;
+    padding-left: 0;
+    background: transparent;
+
+    &:focus {
+      box-shadow: none;
+      background: transparent;
+    }
+  }
+
+  &__notes {
+    resize: vertical;
+    font-size: rem(14px);
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: space(1.5);
+    margin-top: space(1);
+  }
+}
+
+.priority-picker {
+  .form-check-inline {
+    margin-right: space(1.5);
+  }
+
+  .form-check-label {
+    @include mono-caps(11px);
+  }
+}
+
+// ── Lista tipo libro contable ────────────────────────────
+.list-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid $ink;
+  margin-bottom: space(1);
+
+  .nav-link {
+    @include mono-caps(12px);
+    color: $ink-soft;
+  }
+}
+
+.ledger {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.task-row {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: space(1.5) space(2);
+  align-items: start;
+  padding: space(2) space(1);
+  border-bottom: 1px solid $border-color;
+  border-left: 4px solid transparent;
+  transition: background-color 0.15s ease;
+
+  @include from(sm) {
+    grid-template-columns: auto auto 1fr auto;
+  }
+
+  &:hover {
+    background: rgba(#fff, 0.55);
+  }
+
+  &__index {
+    font-size: rem(12px);
+    color: $ink-soft;
+    padding-top: space(0.75);
+  }
+
+  &__body {
+    min-width: 0;
+
+    h3 {
+      font-family: $font-sans;
+      font-size: rem(17px);
+      font-weight: 600;
+      margin: space(0.5) 0 space(0.5);
+      overflow-wrap: anywhere;
+    }
+
+    p {
+      margin: 0 0 space(1);
+      font-size: rem(14px);
+      color: $ink-soft;
+      white-space: pre-line;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: space(1.5);
+    font-size: rem(11px);
+    color: $ink-soft;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  &__actions {
+    grid-column: 3;
+    display: flex;
+    gap: space(0.5);
+
+    @include from(sm) {
+      grid-column: auto;
+    }
+
+    .btn {
+      @include mono-caps(11px);
+      text-decoration: none;
+      padding: space(0.5) space(1);
+    }
+  }
+
+  // Tarea hecha: tachada y atenuada
+  &.is-done &__body {
+    h3 {
+      text-decoration: line-through;
+      text-decoration-color: $vermilion;
+      text-decoration-thickness: 2px;
+      color: $ink-soft;
+    }
+  }
+
+  // Un color por prioridad, generado con un loop
+  @each $name, $color in $priority-colors {
+    &--#{$name} {
+      border-left-color: $color;
+    }
+  }
+}
+
+@each $name, $color in $priority-colors {
+  .tag--#{$name} {
+    color: $color;
+    font-weight: 500;
+  }
+
+  .priority-option--#{$name} .form-check-input:checked {
+    background-color: $color;
+    border-color: $color;
+  }
+}
+
+// Casilla personalizada para marcar hecha / pendiente
+$check-size: space(3.5);
+
+.task-check {
+  width: $check-size;
+  height: $check-size;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1.5px solid $ink;
+  border-radius: 2px;
+  background: #fffdf8;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  svg {
+    width: $check-size * 0.7;
+    height: $check-size * 0.7;
+    fill: none;
+    stroke: $paper;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0;
+  }
+
+  &:hover:not(:disabled) {
+    background: $paper-deep;
+  }
+
+  &[aria-pressed="true"] {
+    background: $ink;
+
+    svg {
+      opacity: 1;
+    }
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba($vermilion, 0.5);
+    outline-offset: 2px;
+  }
+}
+
+.empty-page {
+  padding: space(8) space(2);
+  text-align: center;
+  color: $ink-soft;
+  border: 1.5px dashed rgba($ink, 0.25);
+  margin-top: space(2);
+}

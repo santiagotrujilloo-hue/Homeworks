@@ -1,0 +1,96 @@
+.auth-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: space(3) space(2);
+
+  @include from(md) {
+    padding: space(4) space(6);
+  }
+
+  &__bar,
+  &__foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: space(2);
+    color: $ink-soft;
+    font-size: rem(12px);
+  }
+
+  &__bar {
+    border-bottom: 1.5px solid $ink;
+    padding-bottom: space(1.5);
+  }
+
+  &__foot {
+    justify-content: center;
+    padding-top: space(3);
+  }
+
+  &__body {
+    flex: 1;
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    align-content: center;
+    gap: space(5);
+    padding: space(5) 0;
+
+    @include from(lg) {
+      grid-template-columns: 1.1fr 1fr;
+      align-items: center;
+    }
+  }
+
+  &__intro {
+    h1 {
+      font-size: clamp(#{rem(40px)}, 6vw, #{rem(72px)});
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      margin: space(2) 0;
+    }
+
+    p {
+      max-width: 34ch;
+      color: $ink-soft;
+      font-size: rem(17px);
+    }
+  }
+}
+
+// Formulario como "tiquete" con borde perforado arriba
+.ticket {
+  @include paper-card(10px);
+  position: relative;
+  padding: space(5) space(3) space(3);
+
+  @include from(sm) {
+    padding: space(6) space(5) space(4);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: space(2) space(2) auto;
+    border-top: 2px dashed rgba($ink, 0.25);
+  }
+
+  &__title {
+    font-size: rem(28px);
+    margin-bottom: space(3);
+  }
+
+  &__switch {
+    margin: space(3) 0 0;
+    padding-top: space(2);
+    border-top: 1px solid $border-color;
+    font-size: rem(14px);
+    color: $ink-soft;
+
+    a {
+      font-weight: 600;
+    }
+  }
+}

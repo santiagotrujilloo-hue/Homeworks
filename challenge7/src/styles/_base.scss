@@ -1,0 +1,78 @@
+body {
+  min-height: 100vh;
+  // Papel con renglones muy suaves
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent space(4) - 1px,
+    rgba($ink, 0.035) space(4) - 1px,
+    rgba($ink, 0.035) space(4)
+  );
+}
+
+.mono {
+  font-family: $font-mono;
+}
+
+.brand-mark {
+  font-family: $font-display;
+  font-weight: 700;
+  font-size: rem(22px);
+  color: $ink;
+  letter-spacing: -0.01em;
+
+  em {
+    font-style: normal;
+    color: $vermilion;
+  }
+}
+
+.stamp {
+  @include stamp($vermilion);
+
+  &--danger {
+    @include stamp($danger);
+  }
+}
+
+.btn-ink {
+  --bs-btn-bg: #{$ink};
+  --bs-btn-border-color: #{$ink};
+  --bs-btn-color: #{$paper};
+  --bs-btn-hover-bg: #{$vermilion};
+  --bs-btn-hover-border-color: #{$vermilion};
+  --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: #{darken($vermilion, 8%)};
+  --bs-btn-disabled-bg: #{$ink-soft};
+  --bs-btn-disabled-border-color: #{$ink-soft};
+  padding: space(1.5) space(3);
+  transition: transform 0.12s ease, background-color 0.12s ease;
+
+  &:hover:not(:disabled) {
+    transform: translate(-1px, -1px);
+  }
+}
+
+.form-label {
+  @include mono-caps(11px);
+  color: $ink-soft;
+  margin-bottom: space(0.75);
+}
+
+.paper-modal {
+  @include paper-card(8px, $paper);
+
+  .modal-title {
+    font-size: rem(24px);
+  }
+}
+
+.screen-loader {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: space(2);
+  @include mono-caps(12px);
+  color: $ink-soft;
+}
