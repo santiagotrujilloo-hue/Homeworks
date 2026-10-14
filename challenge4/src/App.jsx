@@ -49,9 +49,11 @@ function App() {
 
     const nuevaPila = new PilaLibros();
 
-    [...pila.libros, nuevoLibro].forEach((libro) => {
+    pila.libros.forEach((libro) => {
       nuevaPila.push(libro);
     });
+
+    nuevaPila.push(nuevoLibro);
 
     setPila(nuevaPila);
 
@@ -69,12 +71,12 @@ function App() {
     <div className="app">
       <header className="header">
         <div>
-          <span className="logo">STACKBOOKS</span>
-          <h1>Administrador de biblioteca</h1>
+          <span className="logo">BIBLIOTECA</span>
+          <h1>Gestión de pila de libros</h1>
         </div>
 
         <div className="contador">
-          <span>{pila.tamaño()}</span>
+          <span>{pila.cantidad()}</span>
           <p>Libros</p>
         </div>
       </header>
@@ -82,22 +84,25 @@ function App() {
       <main className="contenido">
         <section className="formulario-contenedor">
           <div className="formulario-header">
-            <span className="etiqueta">NUEVO REGISTRO</span>
+            <span className="etiqueta">NUEVO LIBRO</span>
+
             <h2>Agregar libro</h2>
+
             <p>
-              Completa la información para añadir un libro a la parte superior
-              de la pila.
+              Ingresa la información del libro para agregarlo en la
+              parte superior de la pila.
             </p>
           </div>
 
           <form onSubmit={agregarLibro}>
             <div className="campo">
               <label htmlFor="nombre">Nombre del libro</label>
+
               <input
                 id="nombre"
                 name="nombre"
                 type="text"
-                placeholder="Ej. Clean Code"
+                placeholder="Ej. Cien años de soledad"
                 value={formulario.nombre}
                 onChange={manejarCambio}
               />
@@ -105,11 +110,12 @@ function App() {
 
             <div className="campo">
               <label htmlFor="isbn">ISBN</label>
+
               <input
                 id="isbn"
                 name="isbn"
                 type="text"
-                placeholder="Ej. 9780132350884"
+                placeholder="Ej. 9780307474728"
                 value={formulario.isbn}
                 onChange={manejarCambio}
               />
@@ -117,6 +123,7 @@ function App() {
 
             <div className="campo">
               <label htmlFor="autor">Autor</label>
+
               <input
                 id="autor"
                 name="autor"
@@ -129,6 +136,7 @@ function App() {
 
             <div className="campo">
               <label htmlFor="editorial">Editorial</label>
+
               <input
                 id="editorial"
                 name="editorial"
@@ -141,7 +149,7 @@ function App() {
 
             <button type="submit" className="boton-agregar">
               <span>+</span>
-              Agregar a la pila
+              Agregar libro
             </button>
           </form>
         </section>
@@ -150,17 +158,18 @@ function App() {
           <div className="pila-header">
             <div>
               <span className="etiqueta">ESTRUCTURA LIFO</span>
+
               <h2>Pila de libros</h2>
             </div>
 
             <div className="lifo">
-              Último en entrar
+              <span>Último en entrar</span>
               <strong>Primero en salir</strong>
             </div>
           </div>
 
           <div className="linea-superior">
-            <span>TOP</span>
+            <span>CIMA DE LA PILA</span>
             <div></div>
           </div>
 
@@ -168,29 +177,45 @@ function App() {
             {libros.length === 0 ? (
               <div className="estado-vacio">
                 <span>□</span>
-                <h3>No hay libros</h3>
-                <p>Agrega un libro para comenzar la pila.</p>
+
+                <h3>No hay libros en la pila</h3>
+
+                <p>
+                  Agrega un libro para comenzar.
+                </p>
               </div>
             ) : (
               libros.map((libro, index) => (
                 <article
-                  className={`libro-card ${index === 0 ? "libro-top" : ""}`}
+                  className={`libro-card ${
+                    index === 0 ? "libro-top" : ""
+                  }`}
                   key={libro.id}
                 >
                   <div className="posicion">
-                    #{String(libros.length - index).padStart(2, "0")}
+                    {String(
+                      libros.length - index
+                    ).padStart(2, "0")}
                   </div>
 
-                  <div className="icono-libro">B</div>
+                  <div className="icono-libro">
+                    L
+                  </div>
 
                   <div className="info-libro">
                     <div className="titulo-linea">
                       <h3>{libro.nombre}</h3>
 
-                      {index === 0 && <span className="top-badge">TOP</span>}
+                      {index === 0 && (
+                        <span className="top-badge">
+                          CIMA
+                        </span>
+                      )}
                     </div>
 
-                    <p className="autor">{libro.autor}</p>
+                    <p className="autor">
+                      {libro.autor}
+                    </p>
 
                     <div className="detalles">
                       <span>
