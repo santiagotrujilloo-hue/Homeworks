@@ -1,5 +1,5 @@
 {
-  "name": "challenge4",
+  "name": "challenge8",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "react": "^19.2.8",
+    "react-d3-tree": "^3.6.7",
     "react-dom": "^19.2.8"
   },
   "devDependencies": {
