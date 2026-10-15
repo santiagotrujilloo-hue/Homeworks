@@ -1,0 +1,69 @@
+@use "sass:math";
+@use "sass:map";
+
+// ── Paleta: grafito + ámbar (carpetas) + cian (archivos) ──
+$bg: #111317;
+$panel: #181b21;
+$panel-2: #1f232b;
+$line: #2b313b;
+$text: #e8eaef;
+$muted: #8c94a3;
+$amber: #f1b33c;
+$cyan: #5ccbd8;
+$danger: #ff6b5a;
+
+$tipos: (
+  "carpeta": $amber,
+  "archivo": $cyan,
+);
+
+$font-ui: "Space Grotesk", system-ui, sans-serif;
+$font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+$unit: 4px;
+$radius: 10px;
+$indent: 18px; // sangría por nivel del árbol
+
+$breakpoints: (
+  "md": 760px,
+  "lg": 1100px,
+);
+
+@function sp($n) {
+  @return $unit * $n;
+}
+
+@function rem($px) {
+  @return math.div($px, 16px) * 1rem;
+}
+
+@function tipo-color($tipo) {
+  @return map.get($tipos, $tipo);
+}
+
+@mixin up($bp) {
+  @media (min-width: map.get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+@mixin surface($bg: $panel) {
+  background: $bg;
+  border: 1px solid $line;
+  border-radius: $radius;
+}
+
+@mixin mono-label {
+  font-family: $font-mono;
+  font-size: rem(11px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $muted;
+}
+
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid rgba($amber, 0.7);
+    outline-offset: 2px;
+  }
+}

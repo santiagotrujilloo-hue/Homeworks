@@ -1,0 +1,610 @@
+@use "sass:math";
+@use "tokens" as *;
+
+// ── Barra superior ──────────────────────────────────────
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: sp(3);
+  padding: sp(3) sp(4);
+  border-bottom: 1px solid $line;
+  background: rgba($bg, 0.88);
+  backdrop-filter: blur(8px);
+
+  &__tag {
+    display: none;
+    color: $muted;
+    font-size: rem(13px);
+
+    @include up(md) {
+      display: inline;
+    }
+  }
+
+  &__right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: sp(2);
+    min-width: 0;
+  }
+}
+
+.brand {
+  font-size: rem(18px);
+  font-weight: 700;
+
+  b {
+    color: $amber;
+  }
+}
+
+.user {
+  display: none;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: rem(12px);
+  color: $muted;
+
+  @include up(md) {
+    display: inline;
+  }
+}
+
+// ── Distribución en 3 columnas ──────────────────────────
+.explorer {
+  display: grid;
+  gap: sp(4);
+  padding: sp(4);
+
+  @include up(md) {
+    grid-template-columns: 280px 1fr;
+  }
+
+  @include up(lg) {
+    grid-template-columns: 290px 1fr 320px;
+  }
+
+  &__tree,
+  &__main {
+    @include surface;
+    padding: sp(3);
+    min-width: 0;
+  }
+
+  &__tree {
+    @include up(md) {
+      position: sticky;
+      top: 68px;
+      align-self: start;
+      max-height: calc(100vh - 84px);
+      overflow: auto;
+    }
+  }
+
+  &__main {
+    padding: sp(5);
+    display: flex;
+    flex-direction: column;
+    gap: sp(4);
+  }
+
+  &__side {
+    display: grid;
+    gap: sp(4);
+    align-content: start;
+    min-width: 0;
+
+    @include up(md) {
+      grid-column: 1 / -1;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include up(lg) {
+      grid-column: auto;
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// ── Árbol (vista recursiva) ─────────────────────────────
+.tree,
+.tree__children {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tree {
+  margin-top: sp(3);
+}
+
+.tree__children {
+  // Línea guía vertical de cada nivel
+  margin-left: math.div($indent, 2) + 2px;
+  padding-left: math.div($indent, 2);
+  border-left: 1px dashed $line;
+}
+
+.tree__row {
+  display: flex;
+  align-items: center;
+  gap: sp(0.5);
+  border-radius: 6px;
+
+  &:hover {
+    background: $panel-2;
+  }
+
+  &.is-active {
+    background: rgba($amber, 0.12);
+    box-shadow: inset 2px 0 0 $amber;
+  }
+}
+
+.tree__caret {
+  width: 20px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  flex: none;
+
+  svg {
+    width: 10px;
+    height: 10px;
+    fill: none;
+    stroke: $muted;
+    stroke-width: 1.6;
+    transition: transform 0.15s;
+  }
+
+  &.is-open svg {
+    transform: rotate(90deg);
+  }
+
+  &:disabled svg {
+    opacity: 0.25;
+  }
+}
+
+.tree__label {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: sp(2);
+  padding: sp(1) sp(1.5) sp(1) 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-size: rem(14px);
+}
+
+.tree__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tree__count {
+  margin-left: auto;
+  font-family: $font-mono;
+  font-size: rem(10px);
+  color: $muted;
+}
+
+// ── Búsqueda ────────────────────────────────────────────
+.search {
+  position: relative;
+
+  &__results {
+    position: absolute;
+    inset: calc(100% + 4px) 0 auto;
+    z-index: 3;
+    list-style: none;
+    margin: 0;
+    padding: sp(1);
+    @include surface($panel-2);
+    box-shadow: 0 12px 30px rgba(#000, 0.4);
+
+    button {
+      width: 100%;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      column-gap: sp(2);
+      padding: sp(2);
+      border: 0;
+      border-radius: 6px;
+      background: none;
+      text-align: left;
+
+      &:hover {
+        background: $panel;
+      }
+
+      small {
+        grid-column: 2;
+        color: $muted;
+        font-size: rem(11px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  &__empty {
+    padding: sp(2);
+    color: $muted;
+    font-size: rem(13px);
+  }
+}
+
+// ── Ruta (breadcrumb) ───────────────────────────────────
+.pathbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-family: $font-mono;
+  font-size: rem(14px);
+
+  button {
+    padding: sp(1) sp(1.5);
+    border: 0;
+    border-radius: 4px;
+    background: none;
+    color: $muted;
+
+    &:hover {
+      color: $text;
+    }
+
+    &[aria-current="page"] {
+      color: $amber;
+      font-weight: 700;
+    }
+  }
+
+  &__sep {
+    color: $line;
+  }
+}
+
+// ── Crear carpeta / archivo ─────────────────────────────
+.create {
+  display: grid;
+  gap: sp(3);
+  padding: sp(4);
+  @include surface($bg);
+
+  @include up(md) {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+  }
+
+  &__error {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: $danger;
+    font-size: rem(13px);
+  }
+
+  &--blocked {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    border-style: dashed;
+    border-color: rgba($cyan, 0.4);
+    color: $muted;
+
+    p {
+      margin: 0;
+    }
+
+    strong {
+      color: $cyan;
+    }
+  }
+}
+
+.segmented {
+  display: inline-flex;
+  padding: 3px;
+  border: 1px solid $line;
+  border-radius: 8px;
+
+  label {
+    display: inline-flex;
+    align-items: center;
+    gap: sp(1.5);
+    padding: sp(1.5) sp(3);
+    border-radius: 6px;
+    font-size: rem(13px);
+    color: $muted;
+    cursor: pointer;
+
+    &.is-on {
+      background: $panel-2;
+      color: $text;
+    }
+
+    &:focus-within {
+      outline: 2px solid rgba($amber, 0.6);
+    }
+  }
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+// ── Contenido de la carpeta ─────────────────────────────
+.tiles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: sp(3);
+}
+
+.tile {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: sp(2);
+  padding: sp(4);
+  @include surface($bg);
+  text-align: left;
+  transition: transform 0.12s, border-color 0.12s;
+
+  .icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  @each $tipo, $color in $tipos {
+    &--#{$tipo}:hover {
+      border-color: rgba($color, 0.6);
+      transform: translateY(-2px);
+    }
+  }
+
+  &__name {
+    width: 100%;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__meta {
+    font-size: rem(11px);
+    color: $muted;
+  }
+}
+
+.empty,
+.file-sheet {
+  display: flex;
+  align-items: center;
+  gap: sp(4);
+  padding: sp(8) sp(5);
+  border: 1px dashed $line;
+  border-radius: $radius;
+  color: $muted;
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    opacity: 0.6;
+  }
+}
+
+.file-sheet {
+  align-items: flex-start;
+  color: $text;
+
+  h2 {
+    margin: 0 0 sp(1);
+    font-size: rem(22px);
+    overflow-wrap: anywhere;
+  }
+
+  p {
+    margin: 0 0 sp(1);
+    color: $muted;
+  }
+
+  &__icon {
+    position: relative;
+
+    .icon {
+      width: 56px;
+      height: 56px;
+      opacity: 1;
+    }
+
+    span {
+      position: absolute;
+      left: 50%;
+      bottom: 8px;
+      transform: translateX(-50%);
+      font-family: $font-mono;
+      font-size: rem(10px);
+      color: $cyan;
+    }
+  }
+}
+
+// ── Paneles laterales ───────────────────────────────────
+.panel {
+  @include surface;
+  padding: sp(4);
+  min-width: 0;
+
+  &__title {
+    margin: 0 0 sp(3);
+    @include mono-label;
+    color: $amber;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: sp(2);
+    margin-top: sp(4);
+  }
+
+  &__note {
+    margin: sp(3) 0 0;
+    font-size: rem(12px);
+    color: $muted;
+  }
+}
+
+.props {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: sp(2) sp(3);
+  margin: 0;
+  font-size: rem(14px);
+
+  dt {
+    @include mono-label;
+    padding-top: 2px;
+  }
+
+  dd {
+    margin: 0;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .mono {
+    font-size: rem(12px);
+  }
+}
+
+.rename,
+.confirm {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: sp(2);
+
+  .field {
+    flex: 1 1 100%;
+  }
+
+  p {
+    flex: 1 1 100%;
+    margin: 0;
+  }
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: sp(2);
+  margin-bottom: sp(4);
+
+  div {
+    padding: sp(2.5);
+    border-radius: 8px;
+    background: $bg;
+    text-align: center;
+  }
+
+  strong {
+    display: block;
+    font-size: rem(22px);
+  }
+
+  span {
+    @include mono-label;
+    font-size: rem(10px);
+  }
+}
+
+.tabs {
+  display: inline-flex;
+  gap: sp(1);
+  padding: 3px;
+  border: 1px solid $line;
+  border-radius: 8px;
+
+  button {
+    padding: sp(1) sp(4);
+    border: 0;
+    border-radius: 6px;
+    background: none;
+    font-family: $font-mono;
+    font-size: rem(12px);
+    color: $muted;
+
+    &.is-on {
+      background: $amber;
+      color: #1b1406;
+      font-weight: 700;
+    }
+  }
+}
+
+.walk {
+  list-style: none;
+  margin: sp(3) 0 0;
+  padding: 0;
+  max-height: 340px;
+  overflow: auto;
+
+  &__step {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: sp(2);
+    // Sangría según el nivel del nodo (variable CSS calculada en React)
+    padding: sp(1) sp(2) sp(1) calc(var(--nivel) * #{$indent * 0.6} + #{sp(2)});
+    border: 0;
+    border-radius: 6px;
+    background: none;
+    text-align: left;
+    font-size: rem(13px);
+
+    &:hover {
+      background: $panel-2;
+    }
+
+    @each $tipo, $color in $tipos {
+      &--#{$tipo} {
+        box-shadow: inset 2px 0 0 rgba($color, 0.5);
+      }
+    }
+
+    &.is-active {
+      background: rgba($amber, 0.14);
+    }
+  }
+
+  &__i {
+    min-width: 22px;
+    font-size: rem(10px);
+    color: $muted;
+  }
+
+  &__lvl {
+    margin-left: auto;
+    font-size: rem(10px);
+    color: $muted;
+  }
+}

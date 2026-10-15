@@ -1,0 +1,115 @@
+@use "tokens" as *;
+
+.auth {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  gap: sp(4);
+  padding: sp(6) sp(4);
+
+  &__window {
+    @include surface;
+    width: min(880px, 100%);
+    overflow: hidden;
+    box-shadow: 0 30px 80px -30px rgba(#000, 0.7);
+  }
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    gap: sp(3);
+    padding: sp(3) sp(4);
+    border-bottom: 1px solid $line;
+    background: $panel-2;
+    font-size: rem(12px);
+    color: $muted;
+  }
+
+  &__grid {
+    display: grid;
+
+    @include up(md) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__tree {
+    margin: 0;
+    padding: sp(6);
+    font-family: $font-mono;
+    font-size: rem(13px);
+    line-height: 1.75;
+    color: $muted;
+    background: $bg;
+    border-bottom: 1px solid $line;
+    overflow-x: auto;
+
+    @include up(md) {
+      border-bottom: 0;
+      border-right: 1px solid $line;
+    }
+
+    @each $tipo, $color in $tipos {
+      .ln--#{$tipo} {
+        color: rgba($color, 0.9);
+      }
+    }
+  }
+
+  &__form {
+    padding: sp(6);
+
+    h1 {
+      margin: 0;
+      font-size: rem(30px);
+      letter-spacing: -0.02em;
+    }
+  }
+
+  &__sub {
+    margin: sp(2) 0 0;
+    color: $muted;
+  }
+
+  &__switch {
+    margin: sp(5) 0 0;
+    font-size: rem(14px);
+    color: $muted;
+  }
+
+  &__foot {
+    text-align: center;
+    font-size: rem(11px);
+    color: rgba($muted, 0.7);
+  }
+
+  .two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: sp(3);
+  }
+}
+
+.dots {
+  display: inline-flex;
+  gap: 6px;
+
+  i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: $line;
+
+    &:first-child {
+      background: rgba($danger, 0.8);
+    }
+
+    &:nth-child(2) {
+      background: rgba($amber, 0.8);
+    }
+
+    &:last-child {
+      background: rgba($cyan, 0.8);
+    }
+  }
+}

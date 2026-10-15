@@ -1,0 +1,45 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function autenticado() {
+      return request.auth != null && request.auth.token.email != null;
+    }
+
+    // El padre debe ser la raíz o una CARPETA existente (un archivo no puede tener hijos)
+    function padreValido(padreId) {
+      return padreId == 'raiz'
+        || get(/databases/$(database)/documents/nodos/$(padreId)).data.tipo == 'carpeta';
+    }
+
+    function nombreValido(nombre) {
+      return nombre is string && nombre.size() > 0 && nombre.size() <= 80;
+    }
+
+    // Cada documento es un nodo del árbol n-ario (carpeta o archivo)
+    match /nodos/{nodoId} {
+      // Cualquier usuario registrado puede consultar el árbol
+      allow read: if autenticado();
+
+      // Solo usuarios registrados crean, y queda guardado su correo
+      allow create: if autenticado()
+        && request.resource.data.creadoPor == request.auth.token.email
+        && request.resource.data.tipo in ['carpeta', 'archivo']
+        && nombreValido(request.resource.data.nombre)
+        && padreValido(request.resource.data.padreId);
+
+      // Solo quien lo creó puede renombrarlo (no puede cambiar tipo, padre ni creador)
+      allow update: if autenticado()
+        && resource.data.creadoPor == request.auth.token.email
+        && request.resource.data.creadoPor == resource.data.creadoPor
+        && request.resource.data.tipo == resource.data.tipo
+        && request.resource.data.padreId == resource.data.padreId
+        && nombreValido(request.resource.data.nombre);
+
+      // Solo quien lo creó puede eliminarlo
+      allow delete: if autenticado()
+        && resource.data.creadoPor == request.auth.token.email;
+    }
+  }
+}

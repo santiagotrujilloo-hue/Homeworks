@@ -1,0 +1,182 @@
+@use "sass:color";
+@use "tokens" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: $font-ui;
+  font-size: rem(15px);
+  color: $text;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba($amber, 0.06), transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, rgba($cyan, 0.05), transparent 60%),
+    $bg;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  @include focus-ring;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+a {
+  color: $amber;
+}
+
+.mono {
+  font-family: $font-mono;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  flex: none;
+
+  &--folder {
+    fill: $amber;
+  }
+
+  &--file {
+    fill: rgba($cyan, 0.18);
+    stroke: $cyan;
+    stroke-width: 1.4;
+    stroke-linejoin: round;
+
+    .icon__fold {
+      fill: none;
+    }
+  }
+}
+
+// ── Controles ───────────────────────────────────────────
+.field {
+  width: 100%;
+  padding: sp(2.5) sp(3);
+  background: $bg;
+  border: 1px solid $line;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s;
+
+  &::placeholder {
+    color: rgba($muted, 0.7);
+  }
+
+  &:focus {
+    border-color: $amber;
+    box-shadow: 0 0 0 3px rgba($amber, 0.15);
+  }
+}
+
+.label {
+  display: block;
+  margin: sp(4) 0 sp(1.5);
+  @include mono-label;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: sp(2);
+  padding: sp(2.5) sp(4);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+
+  &--primary {
+    background: $amber;
+    color: #1b1406;
+
+    &:hover:not(:disabled) {
+      background: color.scale($amber, $lightness: 18%);
+    }
+
+    &:disabled {
+      background: rgba($amber, 0.35);
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    border-color: $line;
+    color: $text;
+
+    &:hover:not(:disabled) {
+      border-color: $muted;
+    }
+  }
+
+  &--danger {
+    background: $danger;
+    color: #2a0d08;
+  }
+
+  &--danger-text {
+    color: $danger;
+  }
+
+  &--sm {
+    padding: sp(1.5) sp(3);
+    font-size: rem(13px);
+  }
+
+  &--block {
+    width: 100%;
+    margin-top: sp(5);
+  }
+}
+
+.alert {
+  margin: sp(4) 0 0;
+  padding: sp(2.5) sp(3);
+  border-left: 3px solid $danger;
+  background: rgba($danger, 0.1);
+  border-radius: 6px;
+  font-size: rem(14px);
+}
+
+.loader {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  color: $muted;
+
+  &__cursor {
+    display: inline-block;
+    width: 9px;
+    height: 16px;
+    margin-right: sp(2);
+    vertical-align: -3px;
+    background: $amber;
+    animation: blink 1s steps(1) infinite;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
