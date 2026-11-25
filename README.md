@@ -9,7 +9,7 @@ Santiago Trujillo Ortiz 240293
 ## Enlaces
 
 - **Propuesta gráfica (Figma):** _pegar enlace_
-- **Sitio publicado (Netlify):** _pegar enlace_
+- **Sitio publicado (Netlify):** https://homeworks-zrw9.netlify.app
 - **Documento final:** [docs/DOCUMENTO_FINAL.md](docs/DOCUMENTO_FINAL.md)
 
 ## Tecnologías
