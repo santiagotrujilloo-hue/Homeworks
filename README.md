@@ -41,5 +41,5 @@ npm run dev
 3. Para crear un administrador: regístrate en la app, abre Firestore → `users` → tu documento y cambia `role` de `user` a `admin`.
 4. Entra a `/admin` y pulsa **Cargar productos a la base de datos**.
 
-/admin: elviejotruji1565@gmmail.com
+/admin: elviejotruji1565@gmail.com
 contra: Santiago14
