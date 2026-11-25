@@ -1,0 +1,49 @@
+.title {
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+}
+
+.list {
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+
+  a {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    text-decoration: none;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 1rem 1.25rem;
+    flex-wrap: wrap;
+
+    &:hover {
+      border-color: var(--ink);
+    }
+  }
+
+  p {
+    color: var(--ink-2);
+    font-size: 0.9rem;
+  }
+}
+
+.right {
+  display: grid;
+  justify-items: end;
+  gap: 0.3rem;
+}
+
+.badge {
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: #E7F0EB;
+}
+
+.pendiente { background: #FFF1CF; }
+.en_camino { background: #FBD5E4; }
+.entregado { background: #CBEBDD; }

@@ -1,0 +1,39 @@
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.emoji {
+  font-size: 3.5rem;
+  display: grid;
+  place-items: center;
+  height: 110px;
+  background: #FFF1CF;
+}
+
+.body {
+  padding: 1rem;
+  display: grid;
+  gap: 0.4rem;
+
+  h3 {
+    font-size: 1.15rem;
+  }
+}
+
+.meta {
+  color: var(--ink-2);
+  font-size: 0.9rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}

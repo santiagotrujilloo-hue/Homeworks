@@ -1,0 +1,48 @@
+.bar {
+  position: relative;
+  display: flex;
+  gap: 0.5rem;
+  background: #fff;
+  padding: 0.5rem;
+  border-radius: 999px;
+  max-width: 560px;
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    padding: 0.7rem 1rem;
+    font-size: 1.05rem;
+    background: transparent;
+    color: var(--ink);
+  }
+}
+
+.list {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  left: 0;
+  right: 0;
+  list-style: none;
+  padding: 0.4rem;
+  background: #fff;
+  color: var(--ink);
+  border-radius: var(--r);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.25);
+  z-index: 10;
+
+  button {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: 0;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      background: #EEF5F1;
+    }
+  }
+}

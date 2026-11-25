@@ -1,0 +1,56 @@
+.chat {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  display: flex;
+  flex-direction: column;
+  height: 340px;
+}
+
+.list {
+  list-style: none;
+  padding: 1rem;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  li {
+    max-width: 80%;
+    padding: 0.5rem 0.8rem;
+    border-radius: 12px;
+    overflow-wrap: anywhere;
+  }
+}
+
+.mine {
+  align-self: flex-end;
+  background: var(--ink);
+  color: #fff;
+}
+
+.theirs {
+  align-self: flex-start;
+  background: #E7F0EB;
+}
+
+.empty {
+  color: var(--ink-2);
+  padding: 0 !important;
+}
+
+.form {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-top: 1px solid var(--line);
+
+  input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+}

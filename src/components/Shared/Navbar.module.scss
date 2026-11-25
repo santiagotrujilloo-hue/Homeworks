@@ -1,0 +1,65 @@
+.header {
+  background: var(--ink);
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding-block: 0.75rem;
+}
+
+.logo {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: var(--mango);
+}
+
+.links {
+  display: flex;
+  gap: 1.25rem;
+  flex: 1;
+
+  a {
+    text-decoration: none;
+    opacity: 0.8;
+    padding-block: 0.25rem;
+    border-bottom: 2px solid transparent;
+  }
+}
+
+.active {
+  opacity: 1 !important;
+  border-bottom-color: var(--mango) !important;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  :global(.btn--ghost) {
+    color: #fff;
+    border-color: rgb(255 255 255 / 0.4);
+  }
+}
+
+.cart {
+  text-decoration: none;
+  background: rgb(255 255 255 / 0.12);
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.hello {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
