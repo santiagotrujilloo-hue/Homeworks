@@ -4,11 +4,7 @@ Plataforma web de pedidos de comida valluna a domicilio en Cali, con seguimiento
 
 ## Integrantes
 
-| Integrante | Rama | Módulo |
-|---|---|---|
-| _Nombre 1_ | `feature/auth-y-rutas` | Login, registro, contextos, rutas públicas/privadas |
-| _Nombre 2_ | `feature/catalogo-carrito` | Menú, buscador (Trie), Top 5 (Heap), carrito (Pila) |
-| _Nombre 3_ | `feature/pedidos-mapa-admin` | Pedidos, mapa (Grafo), cola, panel admin, chat |
+Santiago Trujillo Ortiz 240293
 
 ## Enlaces
 
@@ -44,3 +40,6 @@ npm run dev
 2. Firestore → crear base de datos y publicar las reglas de `firestore.rules`.
 3. Para crear un administrador: regístrate en la app, abre Firestore → `users` → tu documento y cambia `role` de `user` a `admin`.
 4. Entra a `/admin` y pulsa **Cargar productos a la base de datos**.
+
+/admin: elviejotruji1565@gmmail.com
+contra: Santiago14
