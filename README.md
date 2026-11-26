@@ -8,7 +8,7 @@ Santiago Trujillo Ortiz 240293
 
 ## Enlaces
 
-- **Propuesta gráfica (Figma):** _pegar enlace_
+- **Propuesta gráfica (Figma):** https://www.figma.com/design/L0pQGRnfqwQ16ao9EtAvcz/Cali-Delivery---Propuesta-gr%C3%A1fica?node-id=0-1&t=TqhlPJ1fMJWutYik-0
 - **Sitio publicado (Netlify):** https://homeworks-zrw9.netlify.app
 - **Documento final:** [docs/DOCUMENTO_FINAL.md](docs/DOCUMENTO_FINAL.md)
 
