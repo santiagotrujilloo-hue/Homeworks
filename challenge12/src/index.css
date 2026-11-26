@@ -1,0 +1,24 @@
+:root {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+* {
+  box-sizing: border-box;
+}
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+body {
+  min-width: 320px;
+  background: #f5f7fc;
+}
+button, input {
+  font-family: inherit;
+}
+button {
+  cursor: pointer;
+}
