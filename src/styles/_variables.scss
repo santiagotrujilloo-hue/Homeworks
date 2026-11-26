@@ -1,0 +1,15 @@
+// Tokens de diseño reutilizables
+$bg:        #0b0f14;
+$surface:   rgba(255, 255, 255, .05);
+$borde:     rgba(255, 255, 255, .09);
+$texto:     #f4f6f8;
+$suave:     #9aa4b2;
+$primario:  #1ed760;
+$acento:    #6c8cff;
+$radio:     18px;
+$gap:       1.25rem;
+$fuente:    'Inter', 'Segoe UI', system-ui, sans-serif;
+$bp-tablet: 900px;
+
+// Colores del podio (mapa recorrido con @each)
+$podio: (1: #ffd54a, 2: #c9d1d9, 3: #e0955a);

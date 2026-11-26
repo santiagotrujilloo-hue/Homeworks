@@ -1,0 +1,31 @@
+@use 'sass:color';
+@use 'variables' as *;
+
+// Tarjeta con efecto cristal
+@mixin glass($pad: 1.5rem) {
+  background: $surface;
+  border: 1px solid $borde;
+  border-radius: $radio;
+  padding: $pad;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, .35);
+}
+
+@mixin flex($gap: 1rem, $align: center) { display: flex; align-items: $align; gap: $gap; }
+
+@mixin tablet { @media (max-width: $bp-tablet) { @content; } }
+
+@mixin chip($c) {
+  background: transparent; color: $c; cursor: pointer;
+  border: 1px solid color.change($c, $alpha: .6);
+  border-radius: 999px; padding: .4rem .95rem; font: inherit; font-size: .85rem;
+  transition: all .2s;
+  &:hover { background: $c; color: #04120a; transform: translateY(-2px); }
+}
+
+// Portada generada con un tono (--h) distinto por canción
+@mixin cover($size) {
+  width: $size; height: $size; border-radius: $size * .2; flex-shrink: 0;
+  background: linear-gradient(135deg, hsl(var(--h) 80% 55%), hsl(calc(var(--h) + 50) 70% 30%));
+  box-shadow: 0 6px 18px hsl(var(--h) 80% 30% / .5);
+}

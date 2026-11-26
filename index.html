@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SoundLab · Mini plataforma musical educativa</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand__logo">♫</span><div><h1>SoundLab</h1><p>Trie · Max Heap · Grafo no dirigido</p></div></div>
+    <div class="stats">
+      <div class="stat"><strong id="stat-canciones">0</strong><span>canciones</span></div>
+      <div class="stat"><strong id="stat-plays">0</strong><span>reproducciones</span></div>
+      <div class="stat"><strong id="stat-aristas">0</strong><span>conexiones</span></div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel panel--busqueda">
+      <h2 class="panel__titulo">Buscador predictivo <small>Trie</small></h2>
+      <input id="buscador" class="input" placeholder="Escribe un prefijo: b, des, dá…  (Enter para buscar)" autocomplete="off">
+      <p id="estado" class="estado"></p>
+      <ul id="sugerencias" class="sugerencias"></ul>
+    </section>
+
+    <section class="panel panel--player" id="player"></section>
+
+    <section class="panel panel--ranking">
+      <div class="panel__cabecera">
+        <h2 class="panel__titulo">Ranking popular <small>Max Heap</small></h2>
+        <div class="segmento" id="segmento">
+          <button data-top="3">Top 3</button><button data-top="5" class="activo">Top 5</button><button data-top="10">Top 10</button>
+        </div>
+      </div>
+      <ol id="ranking" class="ranking"></ol>
+    </section>
+
+    <section class="panel panel--grafo">
+      <h2 class="panel__titulo">Canciones relacionadas <small>Grafo no dirigido</small></h2>
+      <div id="grafo" class="grafo"></div>
+      <h3 class="subtitulo">Recomendadas (hasta 2 saltos)</h3>
+      <ul id="recomendadas" class="chips"></ul>
+      <form id="form-conectar" class="form form--mini">
+        <input name="otra" class="input" list="lista-titulos" placeholder="Conectar con otra canción…" autocomplete="off">
+        <button class="boton" type="submit">🔗 Conectar</button>
+      </form>
+      <p id="estado-conectar" class="estado"></p>
+    </section>
+    <section class="panel panel--agregar">
+      <h2 class="panel__titulo">Agregar canción <small>Trie · auto-relación</small></h2>
+      <form id="form-agregar" class="form">
+        <input name="titulo" class="input" placeholder="Título *" autocomplete="off">
+        <input name="artista" class="input" placeholder="Artista (para relacionarla)" autocomplete="off">
+        <input name="genero" class="input" list="lista-generos" placeholder="Género" autocomplete="off">
+        <datalist id="lista-generos"></datalist>
+        <input name="plays" class="input" type="number" min="0" placeholder="Reproducciones">
+        <input name="relacionada" class="input" list="lista-titulos" placeholder="Relacionar también con… (opcional)" autocomplete="off">
+        <datalist id="lista-titulos"></datalist>
+        <button class="boton" type="submit">+ Agregar</button>
+      </form>
+      <p id="estado-agregar" class="estado"></p>
+    </section>
+  </main>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

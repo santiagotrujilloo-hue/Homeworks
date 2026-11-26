@@ -1,0 +1,154 @@
+@use 'sass:color';
+@use 'variables' as *;
+@use 'mixins' as *;
+
+@keyframes subir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0; min-height: 100vh; color: $texto; font-family: $fuente;
+  background:
+    radial-gradient(circle at 15% 10%, rgba($primario, .18), transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba($acento, .20), transparent 40%),
+    $bg;
+  background-attachment: fixed;
+}
+
+button { font-family: inherit; }
+
+// ---------- Cabecera ----------
+.topbar {
+  @include flex(2rem); justify-content: space-between; flex-wrap: wrap;
+  max-width: 1200px; margin: 0 auto; padding: 1.75rem 1.5rem 0;
+}
+.brand {
+  @include flex;
+  h1 { margin: 0; font-size: 1.7rem; letter-spacing: -.5px; }
+  p  { margin: .15rem 0 0; color: $suave; font-size: .85rem; }
+  &__logo {
+    display: grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; font-size: 1.6rem; color: #04120a;
+    background: linear-gradient(135deg, $primario, $acento);
+  }
+}
+.stats { @include flex(.75rem); }
+.stat {
+  @include glass(.7rem 1.2rem); text-align: center;
+  strong { display: block; font-size: 1.35rem; color: $primario; }
+  span { font-size: .75rem; color: $suave; }
+}
+
+// ---------- Layout ----------
+.layout {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: $gap;
+  max-width: 1200px; margin: 0 auto; padding: $gap 1.5rem 3rem;
+  @include tablet { grid-template-columns: 1fr; }
+}
+.panel {
+  @include glass; animation: subir .6s ease both;
+  &:nth-child(2) { animation-delay: .08s; }
+  &:nth-child(3) { animation-delay: .16s; }
+  &:nth-child(4) { animation-delay: .24s; }
+  &__cabecera { @include flex; justify-content: space-between; flex-wrap: wrap; }
+  &__titulo {
+    margin: 0 0 1rem; font-size: 1.1rem;
+    small { margin-left: .5rem; padding: .15rem .55rem; border-radius: 999px; font-size: .68rem; color: $primario; background: rgba($primario, .12); }
+  }
+}
+.subtitulo { margin: 1rem 0 .6rem; font-size: .85rem; color: $suave; font-weight: 500; }
+.vacio { color: $suave; font-size: .9rem; }
+
+// ---------- Buscador ----------
+.input {
+  width: 100%; padding: .9rem 1.2rem; border-radius: 999px; border: 1px solid $borde;
+  background: rgba(255, 255, 255, .07); color: $texto; font: inherit; transition: border-color .2s, box-shadow .2s;
+  &::placeholder { color: $suave; }
+  &:focus { outline: none; border-color: $primario; box-shadow: 0 0 0 4px rgba($primario, .18); }
+}
+.estado {
+  min-height: 1.3rem; margin: .6rem .3rem; font-size: .85rem; color: $suave;
+  &.ok { color: $primario; } &.error { color: #ff6b6b; }
+}
+.sugerencias { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
+.sugerencia {
+  width: 100%; text-align: left; padding: .65rem 1rem; border-radius: 12px; cursor: pointer; color: $suave;
+  background: rgba(255, 255, 255, .04); border: 1px solid transparent; transition: all .2s;
+  b { color: $primario; }
+  &:hover { background: rgba($primario, .1); border-color: rgba($primario, .4); color: $texto; transform: translateX(4px); }
+}
+
+// ---------- Reproductor ----------
+.cover { @include cover(60px); &--sm { @include cover(40px); } &--lg { @include cover(130px); } }
+.player {
+  @include flex(1.5rem); height: 100%;
+  &__info { h2 { margin: .2rem 0; font-size: 1.5rem; } p { margin: .1rem 0; color: $suave; } small { color: $primario; text-transform: uppercase; letter-spacing: 1px; font-size: .7rem; } }
+  &__plays { font-size: .85rem; }
+  &--vacio { flex-direction: column; justify-content: center; text-align: center; color: $suave; span { font-size: 3rem; } }
+}
+.boton {
+  margin-top: .8rem; padding: .65rem 1.5rem; border: 0; border-radius: 999px; cursor: pointer; font-weight: 700;
+  background: $primario; color: #04120a; transition: transform .15s, box-shadow .2s;
+  &:hover { transform: scale(1.05); box-shadow: 0 6px 24px rgba($primario, .45); }
+  &:active { transform: scale(.97); }
+}
+
+// ---------- Ranking ----------
+.segmento {
+  display: inline-flex; padding: .25rem; border-radius: 999px; background: rgba(255, 255, 255, .06);
+  button { border: 0; background: none; color: $suave; padding: .35rem .9rem; border-radius: 999px; cursor: pointer; font-size: .8rem; transition: all .2s;
+    &.activo { background: $primario; color: #04120a; font-weight: 700; } }
+}
+.ranking {
+  list-style: none; margin: 1rem 0 0; padding: 0;
+  &__item {
+    @include flex; padding: .55rem .7rem; border-radius: 14px; cursor: pointer; transition: background .2s;
+    &:hover, &.es-actual { background: rgba(255, 255, 255, .07); }
+  }
+  &__pos { width: 1.6rem; text-align: center; font-weight: 800; font-size: 1.2rem; color: $suave; }
+  &__info { flex: 1; min-width: 0; small { display: block; color: $suave; font-size: .75rem; } }
+  &__plays { font-size: .8rem; color: $suave; font-variant-numeric: tabular-nums; }
+  &__barra {
+    height: 5px; margin-top: .4rem; border-radius: 3px; background: rgba(255, 255, 255, .08);
+    span { display: block; height: 100%; border-radius: 3px; background: $primario; transition: width .5s; }
+  }
+  @each $pos, $c in $podio {
+    &__item--#{$pos} &__pos { color: $c; }
+    &__item--#{$pos} &__barra span { background: $c; }
+  }
+}
+
+// ---------- Grafo ----------
+.grafo svg { width: 100%; max-height: 300px; }
+.g-edge { stroke: rgba($acento, .65); stroke-width: 2; &--suave { stroke: rgba(255, 255, 255, .15); stroke-width: 1; stroke-dasharray: 4; } }
+.g-node {
+  cursor: pointer;
+  circle { fill: hsl(var(--h) 70% 45%); stroke: rgba(255, 255, 255, .5); stroke-width: 2; transition: transform .2s; transform-box: fill-box; transform-origin: center; }
+  text { fill: $texto; font-size: 11px; text-anchor: middle; }
+  &:hover circle { transform: scale(1.18); }
+  &--centro circle { stroke: $primario; stroke-width: 4; }
+}
+.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+.chip { @include chip($acento); }
+
+// ---------- Formulario para agregar canciones ----------
+.panel--agregar { grid-column: 1 / -1; animation-delay: .32s; }
+.form {
+  display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr 2fr auto; gap: .75rem; align-items: center;
+  .boton { margin: 0; white-space: nowrap; }
+  @include tablet { grid-template-columns: 1fr 1fr; .boton { grid-column: 1 / -1; } }
+}
+
+// ---------- Sonido: ecualizador y etiqueta de género ----------
+@keyframes eq { from { height: 4px; } to { height: 18px; } }
+@keyframes pulso { 50% { transform: scale(1.05); } }
+.eq {
+  display: inline-flex; align-items: flex-end; gap: 3px; height: 18px; margin-left: .6rem;
+  span { width: 3px; border-radius: 2px; background: $primario; animation: eq .7s ease-in-out infinite alternate;
+    @for $i from 2 through 4 { &:nth-child(#{$i}) { animation-delay: #{$i * .12}s; } } }
+}
+.cover--sonando { animation: pulso 1s ease-in-out infinite; }
+.etiqueta { padding: .1rem .55rem; border-radius: 999px; font-size: .72rem; color: $acento; background: rgba($acento, .15); }
+
+.fuente { margin: .3rem 0 0; font-size: .78rem; color: $suave; }
+
+.form.form--mini { grid-template-columns: 1fr auto; margin-top: 1rem; .boton { grid-column: auto; } }

@@ -1,0 +1,23 @@
+{
+  "name": "spotify-edu-pro",
+  "version": "1.0.0",
+  "description": "Mini plataforma musical educativa: Trie, Max Heap, Grafo y Sass",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "vite --open",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test tests/*.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.108.2",
+    "vite": "^8.3.8"
+  },
+  "type": "module",
+  "private": true
+}
