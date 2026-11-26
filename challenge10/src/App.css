@@ -1,0 +1,706 @@
+:root {
+  --primary: #14213d;
+  --primary-light: #263859;
+  --accent: #0d9488;
+  --accent-hover: #0f766e;
+  --background: #f3f6fb;
+  --white: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --shadow: 0 8px 30px rgba(20, 33, 61, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text);
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ENCABEZADO */
+
+.header {
+  position: relative;
+  overflow: hidden;
+  padding: 38px 24px;
+  background: linear-gradient(
+    120deg,
+    #14213d 0%,
+    #1d3557 60%,
+    #235775 100%
+  );
+  color: white;
+  text-align: center;
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  top: -140px;
+  right: 10%;
+  border-radius: 50%;
+  background: rgba(45, 212, 191, 0.12);
+}
+
+.header::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  bottom: -120px;
+  left: 7%;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.14);
+}
+
+.header h1,
+.header p {
+  position: relative;
+  z-index: 1;
+}
+
+.header h1 {
+  margin: 0 0 10px;
+  font-size: clamp(28px, 4vw, 39px);
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.header p {
+  margin: 0;
+  font-size: 15px;
+  color: #cbd5e1;
+}
+
+/* CONTENEDOR */
+
+.container {
+  width: 100%;
+  max-width: 1230px;
+  padding: 38px 24px 65px;
+  margin: 0 auto;
+  flex: 1;
+}
+
+/* LOGIN Y REGISTRO */
+
+.auth-card {
+  max-width: 450px;
+  width: 100%;
+  margin: 20px auto;
+  padding: 38px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+}
+
+.auth-card h2 {
+  margin: 0 0 12px;
+  font-size: 27px;
+  text-align: center;
+  color: var(--primary);
+}
+
+.auth-card > p {
+  text-align: center;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.auth-form label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 14px 16px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  color: var(--text);
+  outline: none;
+}
+
+.auth-form input:focus,
+.tarea-form input:focus,
+.editar-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.12);
+}
+
+.primary-button {
+  padding: 13px 20px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 11px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.primary-button:hover:not(:disabled) {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.auth-switch {
+  margin: 25px 0 4px;
+}
+
+.switch-button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  color: var(--accent-hover);
+  font-weight: 700;
+}
+
+.switch-button:hover {
+  text-decoration: underline;
+}
+
+/* DASHBOARD */
+
+.dashboard-card {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+}
+
+/* CABECERA DEL DASHBOARD */
+
+.dashboard-header {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 28px 32px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.dashboard-header h2 {
+  margin: 0 0 8px;
+  font-size: 26px;
+  color: var(--primary);
+}
+
+.dashboard-header p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.dashboard-header strong {
+  color: var(--primary);
+}
+
+.logout-button {
+  flex-shrink: 0;
+  padding: 12px 19px;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  border-radius: 10px;
+  color: #be123c;
+  font-weight: 700;
+}
+
+.logout-button:hover:not(:disabled) {
+  background: #ffe4e6;
+}
+
+/* PERFIL Y AVATAR */
+
+.avatar-container {
+  grid-column: 1;
+  margin: 0;
+  padding: 28px 23px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  min-width: 0;
+}
+
+.avatar-container h2 {
+  margin: 0 0 10px;
+  font-size: 21px;
+  color: var(--primary);
+}
+
+.avatar-container > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.avatar-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 26px auto;
+}
+
+.avatar-preview img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 5px solid #ccfbf1;
+  box-shadow: 0 5px 20px rgba(13, 148, 136, 0.15);
+  object-fit: cover;
+}
+
+.avatar-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  text-align: left;
+}
+
+.avatar-container form label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.avatar-container input[type="file"] {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  background: #f8fafc;
+  color: var(--text);
+  border: 1px dashed #94a3b8;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.avatar-container input::file-selector-button {
+  border: none;
+  border-radius: 7px;
+  background: #ccfbf1;
+  color: #115e59;
+  padding: 9px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.avatar-container form p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.avatar-container .primary-button {
+  width: 100%;
+}
+
+/* PANEL DE TAREAS */
+
+.tareas-container {
+  grid-column: 2;
+  margin: 0;
+  min-width: 0;
+  padding: 28px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.tareas-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 26px;
+}
+
+.tareas-header h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  color: var(--primary);
+}
+
+.tareas-header p {
+  margin: 5px 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.task-count {
+  flex-shrink: 0;
+  padding: 10px 14px;
+  background: #ccfbf1;
+  color: #0f766e;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* CREAR TAREAS */
+
+.tarea-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.tarea-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 16px;
+  background: #f8fafc;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  outline: none;
+}
+
+.tarea-form .primary-button {
+  flex-shrink: 0;
+}
+
+/* LISTADO */
+
+.lista-tareas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lista-tareas li {
+  padding: 16px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.lista-tareas li:hover {
+  background: #f0fdfa;
+  border-color: #99f6e4;
+}
+
+.tarea-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.tarea-contenido {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.tarea-contenido input[type="checkbox"] {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+.tarea-contenido span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.tarea-completada .tarea-contenido span {
+  color: #94a3b8;
+  text-decoration: line-through;
+}
+
+.tarea-acciones {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.tarea-acciones button,
+.editar-form button {
+  padding: 9px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.editar-button,
+.guardar-button {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.editar-button:hover,
+.guardar-button:hover {
+  background: #bfdbfe;
+}
+
+.eliminar-button {
+  background: #ffe4e6;
+  color: #be123c;
+}
+
+.eliminar-button:hover {
+  background: #fecdd3;
+}
+
+/* EDITAR TAREA */
+
+.editar-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.editar-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 11px;
+  background: white;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+}
+
+.cancelar-button {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+/* ESTADOS Y MENSAJES */
+
+.empty-state {
+  padding: 50px 20px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.empty-state h3 {
+  margin: 0 0 10px;
+  color: var(--primary);
+}
+
+.empty-state p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.success-message,
+.error-message {
+  margin: 18px auto;
+  padding: 13px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.success-message {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.error-message {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.loading-text {
+  padding: 30px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* FOOTER */
+
+.footer {
+  background: white;
+  border-top: 1px solid var(--border);
+  padding: 24px;
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 950px) {
+  .dashboard-card {
+    grid-template-columns: 250px minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .tareas-container,
+  .avatar-container {
+    padding: 22px;
+  }
+
+  .tareas-header {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 750px) {
+  .dashboard-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .dashboard-header,
+  .avatar-container,
+  .tareas-container {
+    grid-column: 1;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .avatar-container {
+    text-align: center;
+  }
+
+  .tarea-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tarea-acciones {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding: 20px 12px 40px;
+  }
+
+  .header {
+    padding: 30px 16px;
+  }
+
+  .dashboard-header,
+  .tareas-container,
+  .avatar-container {
+    padding: 20px;
+  }
+
+  .auth-card {
+    padding: 28px 20px;
+  }
+
+  .tarea-form,
+  .editar-form {
+    flex-direction: column;
+  }
+
+  .tarea-form button,
+  .editar-form button {
+    width: 100%;
+  }
+
+  .tareas-header h2 {
+    font-size: 22px;
+  }
+}
+
+
+.eliminar-avatar-button {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px 18px;
+  background: #fff1f2;
+  color: #be123c;
+  border: 1px solid #fecdd3;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.eliminar-avatar-button:hover:not(:disabled) {
+  background: #ffe4e6;
+}
+
+.eliminar-avatar-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
